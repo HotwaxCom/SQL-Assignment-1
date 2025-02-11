@@ -5,5 +5,6 @@ from order_header oh
 join order_shipment os on os.order_id=oh.order_id
 join shipment s on s.shipment_id=os.shipment_id
 	where shipment_method_type_id="STOREPICKUP"
+	and oh.sales_channel_enum_id = 'WEB_SALES_CHANNEL'
 	and oh.order_date between '2024-01-01' and '2024-12-31';
 
