@@ -1,32 +1,38 @@
-New Customers Acquired in June 2023
+Question:
 
-Business Problem: The marketing team ran a campaign in June 2023 and wants to see how many new customers signed up during that period.
+How many new customers signed up during the marketing campaign in June 2023?
 
-Fields to Retrieve:
+Solution:
 
-PARTY_ID,FIRST_NAME, LAST_NAME, EMAIL, PHONE, ENTRY_DATE
+```
+SELECT
+    pe.PARTY_ID,
+    pe.FIRST_NAME,
+    pe.LAST_NAME,
+    cm.INFO_STRING AS EMAIL,
+    tn.CONTACT_NUMBER AS PHONE,
+    pe.CREATED_STAMP AS ENTRY_DATE
+FROM person pe 
+    JOIN party_role pr ON pe.PARTY_ID = pr.PARTY_ID
+    LEFT JOIN party_contact_mech pcm ON pcm.PARTY_ID = pe.PARTY_ID 
+    LEFT JOIN contact_mech cm ON cm.CONTACT_MECH_ID = pcm.CONTACT_MECH_ID
+    JOIN telecom_number tn ON tn.CONTACT_MECH_ID = cm.CONTACT_MECH_ID 
+WHERE cm.contact_mech_type_id = 'TELECOM_NUMBER' 
+AND pr.ROLE_TYPE_ID = 'CUSTOMER' 
+AND pe.CREATED_STAMP BETWEEN '2023-06-01' AND '2023-06-30';
+```
 
+Reasoning:
 
-QUERY:
+We selected all required fields and applied the necessary joins:
 
-select
-	pe.PARTY_ID,
-	pe.FIRST_NAME,
-	pe.LAST_NAME,
-	cm.INFO_STRING AS EMAIL,
-	tn.CONTACT_NUMBER AS PHONE,
-	pe.CREATEd_STAMP AS ENTRY_DATE
-from person pe 
-	join party_role pr ON pe.PARTY_ID = pr.PARTY_ID
-	left join party_contact_mech pcm ON pcm.PARTY_ID = pe.PARTY_ID 
-	left join contact_mech cm ON cm.CONTACT_MECH_ID = pcm.CONTACT_MECH_ID
-	join telecom_number tn on tn.CONTACT_MECH_ID = cm.CONTACT_MECH_ID 
-where cm.contact_mech_type_id = 'TELECOM_NUMBER' 
-and pr.ROLE_TYPE_ID = 'CUSTOMER' 
-and pe.CREATED_STAMP BETWEEN '2023-06-01' AND '2023-06-30';
+1. Joined 'party_role' to filter customers.
 
+2. Used left joins on 'party_contact_mech' and 'contact_mech' to get email details.
 
-Reasoning: we took all the fields we were asked to retrieve and then applied join on all the tables that were required like firstly joined partyRole table using party_id and then applied left join on partyContactMech using partyId and similarly retrieved the fields
+3. Joined 'telecom_number' to retrieve phone numbers.
+
+4. Filtered data within the given date range to capture new customers acquired in June 2023.
 
 
 Query Cost: 16010.35
