@@ -14,9 +14,9 @@ SELECT
     pe.CREATED_STAMP AS ENTRY_DATE
 FROM person pe 
     JOIN party_role pr ON pe.PARTY_ID = pr.PARTY_ID
-    LEFT JOIN party_contact_mech pcm ON pcm.PARTY_ID = pe.PARTY_ID 
-    LEFT JOIN contact_mech cm ON cm.CONTACT_MECH_ID = pcm.CONTACT_MECH_ID
-    JOIN telecom_number tn ON tn.CONTACT_MECH_ID = cm.CONTACT_MECH_ID 
+    JOIN party_contact_mech pcm ON pcm.PARTY_ID = pe.PARTY_ID 
+    JOIN contact_mech cm ON cm.CONTACT_MECH_ID = pcm.CONTACT_MECH_ID
+    LEFT JOIN telecom_number tn ON tn.CONTACT_MECH_ID = cm.CONTACT_MECH_ID 
 WHERE cm.contact_mech_type_id = 'TELECOM_NUMBER' 
 AND pr.ROLE_TYPE_ID = 'CUSTOMER' 
 AND pe.CREATED_STAMP BETWEEN '2023-06-01' AND '2023-06-30';
