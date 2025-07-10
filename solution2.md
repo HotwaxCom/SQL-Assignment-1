@@ -4,14 +4,12 @@ Merchandising teams often need a list of all physical products to manage logisti
 
 Solution:
 ```
--- Selecting required attributes
 select
 	p.PRODUCT_ID,
 	p.PRODUCT_TYPE_ID,
 	p.INTERNAL_NAME
 from
 	PRODUCT p
-	-- Joining product type and product entity to find physical product
 join 
     PRODUCT_TYPE pt on
 	p.PRODUCT_TYPE_ID = pt.PRODUCT_TYPE_ID
@@ -29,7 +27,7 @@ where
 
 2. Applied a join on 'product_type' to ensure all physical products are considered.
    
-3. Filtered products to include only finished goods that are not virtual and are variants.
+3. Filtered products to apply filter of sales discontinuation date and support discontinuation date.
    
 4. Ensured the product type is marked as physical.
 
