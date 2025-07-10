@@ -36,5 +36,5 @@ then joined order item table on order id and order item seq id then applied join
 I applied the date filter of between.
 
 ```
-Query Cost: 110085.79
+Query Cost: 137430.91
 ```
