@@ -21,10 +21,9 @@ select
 	opp.status_id as payment_status,
 	s.status_id as shipment_status
 from order_header oh
-join order_payment_preference opp on opp.order_id=oh.order_id and opp.status_id != 'PAYMENT_RECEIVED'
+join order_payment_preference opp on opp.order_id=oh.order_id and opp.status_id = 'PAYMENT_SETTLED'
 left join order_shipment os on os.order_id=oh.order_id
-left join shipment s on s.shipment_id=os.shipment_id and s.status_id != 'SHIPMENT_SHIPPED'
-where oh.STATUS_ID != 'ORDER_COMPLETED';
+left join shipment s on s.shipment_id=os.shipment_id and s.status_id != 'SHIPMENT_SHIPPED';
 ```
 Reasoning:
 
