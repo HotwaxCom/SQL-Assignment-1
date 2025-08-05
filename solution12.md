@@ -5,6 +5,7 @@ The retailer has set a threshold value for products that are sold online, in ord
 Fields to retrieve:
 
 --> PRODUCT ID
+
 --> THRESHOLD
 
 Solution:
