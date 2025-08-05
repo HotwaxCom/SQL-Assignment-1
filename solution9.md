@@ -2,6 +2,11 @@ Question:
 
 Operations teams may want to see how orders complete across the day to schedule staffing.
 
+Fields to retrieve:
+
+--> TOTAL ORDERS
+--> HOUR
+
 Solution:
 
 ```
@@ -9,8 +14,7 @@ Select
     hour(os.status_datetime) AS order_hour,
     count(oh.order_id) AS orders_completed
 from order_header oh
-join order_status os on os.order_id = oh.order_id
-where os.status_id = 'ORDER_COMPLETED'
+join order_status os on os.order_id = oh.order_id and os.status_id = 'ORDER_COMPLETED'
 group by order_hour
 order by order_hour;
 ```
@@ -21,5 +25,5 @@ Reasoning:
 2. Also, since we wanted to find out the count of orders completed at each hour so we found the count and its respective hours.
 
 ```
-Query Cost: 36091
+Query Cost: 32,811.95
 ```
