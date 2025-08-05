@@ -3,12 +3,18 @@ Question:
 How many new customers signed up during the marketing campaign in June 2023?
 
 Fields to retrieve:
-PARTY_ID
-FIRST_NAME
-LAST_NAME
-EMAIL
-PHONE
-ENTRY_DATE
+
+--> PARTY_ID
+
+--> FIRST_NAME
+
+--> LAST_NAME
+
+--> EMAIL
+
+--> PHONE
+
+--> ENTRY_DATE
 
 Solution:
 
