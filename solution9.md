@@ -5,6 +5,7 @@ Operations teams may want to see how orders complete across the day to schedule 
 Fields to retrieve:
 
 --> TOTAL ORDERS
+
 --> HOUR
 
 Solution:
