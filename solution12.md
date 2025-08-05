@@ -16,7 +16,7 @@ select
 	pf.facility_id,
 	pf.minimum_stock as threshold
 from product_facility pf 
-join facility f on f.facility_id=pf.facility_id
+join facility f on f.facility_id=pf.facility_id and f.facility_type_id = "CONFIGURATION"
 	where pf.minimum_stock is not null
 	group by pf.product_id,pf.facility_id,pf.minimum_stock;
 ```
