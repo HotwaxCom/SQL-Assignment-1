@@ -2,6 +2,14 @@ Question:
 
 Merchandising teams often need a list of all physical products to manage logistics, warehousing, and shipping.
 
+Fields to retrieve:
+
+--> PRODUCT_ID
+
+--> PRODUCT_TYPE_ID
+
+--> INTERNAL_NAME
+
 Solution:
 ```
 select
