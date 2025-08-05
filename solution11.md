@@ -2,6 +2,11 @@ Question:
 
 The merchandising team needs to know how many orders were cancelled in the previous month and their reasons.
 
+Fields to retrieve:
+
+--> TOTAL ORDERS
+--> CANCELATION REASON
+
 Solution:
 
 ```
