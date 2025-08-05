@@ -36,7 +36,7 @@ JOIN contact_mech cm
 	ON cm.CONTACT_MECH_ID = pcm.CONTACT_MECH_ID 
 	and cm.contact_mech_type_id = 'TELECOM_NUMBER'
 JOIN telecom_number tn 
-	ON tn.CONTACT_MECH_ID = cm.CONTACT_MECH_ID;
+	ON tn.CONTACT_MECH_ID = cm.CONTACT_MECH_ID
 WHERE pe.CREATED_STAMP between '2023-06-01' and '2023-07-01';
 ```
 
@@ -44,13 +44,13 @@ Reasoning:
 
 We selected all required fields and applied the necessary joins:
 
-1. Joined 'party_role' to filter customers with role_type_id as 'CUSTOMER'.
+1. Joined 'party_role' to filter customers with role as 'CUSTOMER'.
 
-2. Used inner join on 'party_contact_mech' and 'contact_mech' to get email details.
+2. Used inner join on 'party_contact_mech' and 'contact_mech' to get email details for the specific party.
 
 3. Joined 'telecom_number' to retrieve phone numbers.
 
 4. Filtered data within the given date range to capture new customers acquired in June 2023.
 
 
-Query Cost: 11,717.44
+Query Cost: 15,525.14
