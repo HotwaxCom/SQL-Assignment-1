@@ -11,15 +11,14 @@ Fields to retrieve:
 Solution:
 
 ```
-select
-    count(os.order_id) as total_orders,
-    os.change_reason as cancellation_reason
-from order_status os
-where os.status_id = 'ORDER_CANCELLED'
-  and year(os.status_datetime) = year(current_date - interval 1 month)
-and month(os.status_datetime ) = month(current_date - interval 1 month)
-group by os.change_reason
-order by total_orders desc;
+SELECT
+    COUNT(os.order_id) AS total_orders,
+    os.change_reason AS cancellation_reason
+FROM order_status os
+WHERE os.status_id = 'ORDER_CANCELLED'
+  AND DATE_FORMAT(os.status_datetime, '%Y-%m') = DATE_FORMAT(CURRENT_DATE - INTERVAL 1 MONTH, '%Y-%m')
+GROUP BY os.change_reason
+ORDER BY total_orders DESC;
 
 ```
 
