@@ -5,6 +5,7 @@ The merchandising team needs to know how many orders were cancelled in the previ
 Fields to retrieve:
 
 --> TOTAL ORDERS
+
 --> CANCELATION REASON
 
 Solution:
