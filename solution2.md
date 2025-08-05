@@ -30,12 +30,12 @@ where
  
 1. Selected required fields: PRODUCT_ID, PRODUCT_TYPE_ID, INTERNAL_NAME.
 
-2. Applied a join on 'product_type' to ensure all physical products are considered.
+2. To get all the physical products we check that is_variant='Y' and is_virtual='N' to ensure that only physical products are considered.
    
-3. Filtered products to apply filter of sales discontinuation date and support discontinuation date.
+3. Applied sales discontinuation date and support discontinuation date check so that we only get active products.
    
 4. Ensured the product type is marked as physical.
 
 ```
-Query Cost: 71,422.77
+Query Cost: 95,620.36
 ```
