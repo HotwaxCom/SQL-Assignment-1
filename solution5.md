@@ -24,19 +24,18 @@ select
     oh1.ship_group_seq_id
 from order_header oh
 join order_status os
-	on os.order_id = oh.order_id
-join order_history oh1 on oh1.order_id = oh.order_id and os.status_id = 'ORDER_COMPLETED' and
- os.status_datetime between '2023-08-01' and '2023-08-31'
+	on os.order_id = oh.order_id and os.status_id = 'ORDER_COMPLETED'
+join order_history oh1 on oh1.order_id = oh.order_id 
 join order_item oi on oi.order_id = oh1.order_id and oi.order_item_seq_id = oh1.order_item_seq_id 
 join order_item_ship_group oisg on oisg.order_id = oh.order_id 
 join product p on p.product_id = oi.product_id
-join facility f on f.facility_id = oisg.facility_id;
+join facility f on f.facility_id = oisg.facility_id
+	where os.status_datetime between '2023-08-01' and '2023-08-31';
 ```
 
 Reasoning:
 
-Firstly, I retrieved all the fields that we were asked to then I started off with joining tables as and when required ie. first joined order history table with taking order id and 
-then joined order item table on order id and order item seq id then applied join with order item ship group table as we are required to fetch facility id and then joined product table with taking product id and then applied join on the facility table with order item ship group because if an order is completed it has to be associated with a facility. Lastly, to get completed orders within the date constraint applied join with order status.
+Firstly, I retrieved all the fields that we were asked to then I started off with joining tables as and when required that is first applied join with order_status and applied a check such that status of the order is "ORDER_COMPLETED" then with order_history, order item, order item ship group, product table and facility.Lastly, to get completed orders within the date constraint took this date from status_datetime field. 
 
 ```
 Query Cost: 137430.91
