@@ -30,7 +30,6 @@ FROM person pe
 JOIN party_role pr 
     ON pe.PARTY_ID = pr.PARTY_ID 
     and pr.ROLE_TYPE_ID = 'CUSTOMER'
-    AND pe.CREATED_STAMP between '2023-06-01' and '2023-07-01'
 JOIN party_contact_mech pcm 
 	ON pcm.PARTY_ID = pe.PARTY_ID 
 JOIN contact_mech cm 
@@ -38,6 +37,7 @@ JOIN contact_mech cm
 	and cm.contact_mech_type_id = 'TELECOM_NUMBER'
 JOIN telecom_number tn 
 	ON tn.CONTACT_MECH_ID = cm.CONTACT_MECH_ID;
+WHERE pe.CREATED_STAMP between '2023-06-01' and '2023-07-01';
 ```
 
 Reasoning:
