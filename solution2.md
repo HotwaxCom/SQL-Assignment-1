@@ -18,11 +18,8 @@ select
 	p.INTERNAL_NAME
 from
 	PRODUCT p
-join 
-    PRODUCT_TYPE pt on
-	p.PRODUCT_TYPE_ID = pt.PRODUCT_TYPE_ID
 where
-	pt.IS_PHYSICAL = 'Y'
+	p.IS_VARIANT = 'Y' and p.IS_VIRTUAL = 'N'
 	and (p.SALES_DISCONTINUATION_DATE is null
 		or p.SALES_DISCONTINUATION_DATE > NOW())
 	and (p.SUPPORT_DISCONTINUATION_DATE is null
